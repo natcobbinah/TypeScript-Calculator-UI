@@ -8,7 +8,7 @@
     "dist"
   ],
   "scripts": {
-    "copy": "copy public dist",
+    "copy": "cp public dist",
     "build": "npm run copy && webpack --config webpack.config.client.js"
   },
   "keywords": [],
