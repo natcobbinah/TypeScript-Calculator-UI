@@ -1,5 +1,5 @@
 import { Expression } from 'arithmetic-expr-calculator'
-import '../public/styles.css'
+import './styles.css'
 
 let expr = new Expression()
 
