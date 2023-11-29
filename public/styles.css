@@ -1,0 +1,25 @@
+p{
+    text-align: center;
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.btn{
+    padding: 1rem;
+    width: 5rem;
+    margin: 2px;
+}
+
+#expression-input{
+    padding-top: 2rem;
+    height: 7rem;
+}
+
+#btn_equalsTo{
+    width: 10.4em;
+}
+
+#expression-holder{
+    position: relative;
+    top: 40px; 
+}
