@@ -2,13 +2,14 @@
   "name": "typescript-calculator",
   "version": "1.0.0",
   "description": "",
-  "main": "dist/index.js",
+  "main": "dist/main.bundle.js",
   "types": "dist/index.d.ts",
   "files": [
     "dist"
   ],
   "scripts": {
-    "build": "webpack --config webpack.config.js"
+    "copy": "copy public dist",
+    "build": "npm run copy && webpack --config webpack.config.js"
   },
   "keywords": [],
   "author": "",
