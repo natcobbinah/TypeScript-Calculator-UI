@@ -9,7 +9,7 @@
   ],
   "scripts": {
     "copy": "copy public dist",
-    "build": "npm run copy && webpack --config webpack.config.js"
+    "build": "webpack --config webpack.config.js && npm run copy"
   },
   "keywords": [],
   "author": "",
