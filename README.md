@@ -7,3 +7,4 @@ This is a graphical interface to the  arithmetic-expr-calculator library I devel
 
 ## npm library URL
 https://www.npmjs.com/package/arithmetic-expr-calculator
+
