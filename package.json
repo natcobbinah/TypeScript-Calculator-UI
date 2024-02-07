@@ -27,6 +27,6 @@
     "webpack-cli": "^5.1.4"
   },
   "dependencies": {
-    "arithmetic-expr-calculator": "^1.0.6"
+    "arithmetic-expr-calculator": "^1.0.8"
   }
 }

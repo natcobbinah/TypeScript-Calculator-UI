@@ -25,6 +25,8 @@ const getButtonValue = (button: HTMLButtonElement) => {
     } else if (button.value === "C") {
         clearTextExpressionHolder_TextField()
         clearTextField()
+        //clear all previous stored values in accumulator
+        resetAccumulator()
 
     } else if (button.value === "rpn_postfix") {
         let postfix_notation = expr.convert_to_PostfixRPN(
@@ -47,15 +49,17 @@ const getButtonValue = (button: HTMLButtonElement) => {
         }
 
     } else if (button.value === "=") {
+        console.log(displayTxtField.value)
         let computedResult = expr.eval_Expression(
             expr.convert_to_PostfixRPN(displayTxtField.value)
         )
+        console.log(computedResult)
         clearTextField()
         displayTxtField.value = String(computedResult)
 
         //get user-input expression and computation, and display in expression holder textfd
         clearTextExpressionHolder_TextField()
-        for(let value of expression_accumulator.values()){
+        for (let value of expression_accumulator.values()) {
             expressionHolder_txtField.value += value
         }
 
@@ -74,7 +78,7 @@ const getButtonValue = (button: HTMLButtonElement) => {
 
         //show user input in both txtfield and expression holder txtfield
         expressionHolder_txtField.value += button.value
-        
+
     }
 }
 
@@ -98,7 +102,7 @@ const removeCharValue_One_At_A_Time = () => {
 }
 
 const resetAccumulator = () => {
-    while(expression_accumulator.length != 0){
+    while (expression_accumulator.length != 0) {
         expression_accumulator.pop()
     }
 }
