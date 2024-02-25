@@ -11,7 +11,7 @@
 
 <body>
   <div class="container">
-    <div class="row col-6 mx-auto">
+    <div class="row col-9 mx-auto">
       <div class="mb-3 col">
         <p>Arithmetic Expression Calculator</p>
         <input type="text" class="form-control form-control-lg" id="expression-holder">
@@ -19,38 +19,51 @@
           placeholder="2.2 + 7.89 * 9.45 - 6.79 ^ 3 * ( 44 / 3 ) / 9">
       </div>
 
-      <div class="d-grid gap-2 d-md-block mb-2">
-        <button class="btn btn-secondary" value="7" type="button">7</button>
-        <button class="btn btn-secondary" value="8" type="button">8</button>
-        <button class="btn btn-secondary" value="9" type="button">9</button>
+      <div class="d-grid gap-3 d-md-block mb-2">
+        <button class="btn btn-success" value="Inv" type="button">Inv</button>
+        <button class="btn btn-secondary" value="C" type="button">nCr</button>
+        <button class="btn btn-secondary" value="P" type="button">nPr</button>
+        <button class="btn btn-light" value="7" type="button">7</button>
+        <button class="btn btn-light" value="8" type="button">8</button>
+        <button class="btn btn-light" value="9" type="button">9</button>
         <button class="btn btn-secondary" value="-" type="button">-</button>
         <button class="btn btn-secondary" value="←" type="button">←</button>
-        <button class="btn btn-danger" value="C" type="button">C</button>
+        <button class="btn btn-danger" value="AC" type="button">AC</button>
       </div>
 
       <div class="d-grid gap-3 d-md-block  mb-2">
-        <button class="btn btn-secondary" value="4" type="button">4</button>
-        <button class="btn btn-secondary" value="5" type="button">5</button>
-        <button class="btn btn-secondary" value="6" type="button">6</button>
+        <button class="btn btn-secondary" value="csc" type="button">csc</button>
+        <button class="btn btn-secondary" value="sin" id="sin" type="button">sin</button>
+        <button class="btn btn-secondary" value="Γ" type="button">Γ</button>
+        <button class="btn btn-light" value="4" type="button">4</button>
+        <button class="btn btn-light" value="5" type="button">5</button>
+        <button class="btn btn-light" value="6" type="button">6</button>
         <button class="btn btn-secondary" value="*" type="button">*</button>
         <button class="btn btn-secondary" value="^" type="button">^</button>
         <button class="btn btn-primary" value="rpn_postfix" type="button">Postfix</button>
       </div>
 
       <div class="d-grid gap-3 d-md-block  mb-2">
-        <button class="btn btn-secondary" value="1" type="button">1</button>
-        <button class="btn btn-secondary" value="2" type="button">2</button>
-        <button class="btn btn-secondary" value="3" type="button">3</button>
+        <button class="btn btn-secondary" value="sec" type="button">sec</button>
+        <button class="btn btn-secondary" value="cos" id="cos" type="button">cos</button>
+        <button class="btn btn-secondary" value="ln" type="button">ln</button>
+        <button class="btn btn-light" value="1" type="button">1</button>
+        <button class="btn btn-light" value="2" type="button">2</button>
+        <button class="btn btn-light" value="3" type="button">3</button>
         <button class="btn btn-secondary" value="/" type="button">/</button>
         <button class="btn btn-secondary" value="." type="button">.</button>
         <button class="btn btn-info" value="rpn_prefix" type="button">Prefix</button>
       </div>
 
       <div class="d-grid gap-3 d-md-block  mb-2">
-        <button class="btn btn-secondary" value="0" type="button">0</button>
+        <button class="btn btn-secondary" value="cot" type="button">cot</button>
+        <button class="btn btn-secondary" value="tan" id="tan" type="button">tan</button>
+        <button class="btn btn-secondary" value="log" type="button">log</button>
+        <button class="btn btn-light" value="0" type="button">0</button>
         <button class="btn btn-secondary" value="(" type="button">(</button>
         <button class="btn btn-secondary" value=")" type="button">)</button>
         <button class="btn btn-secondary" value="+" type="button">+</button>
+        <button class="btn btn-secondary" value="!" type="button">x!</button>
         <button class="btn btn-warning" value="=" type="button" id="btn_equalsTo">=</button>
       </div>
     </div>

@@ -9,6 +9,11 @@ let expressionHolder_txtField = document.getElementById('expression-holder') as 
 const displayTxtField = document.getElementById('expression-input') as HTMLInputElement
 const buttons = document.querySelectorAll('button')
 
+//the value and ids of these buttons, will be changed to their inverse forms, on Inverse(Inv) button clicked
+let sin_btn = document.getElementById('sin') as HTMLButtonElement
+let cos_btn = document.getElementById('cos') as HTMLButtonElement
+let tan_btn = document.getElementById('tan') as HTMLButtonElement
+
 //disable expression holder textfield
 expressionHolder_txtField.disabled = true
 
@@ -22,11 +27,30 @@ const getButtonValue = (button: HTMLButtonElement) => {
     if (button.value === "←") {
         removeCharValue_One_At_A_Time()
 
-    } else if (button.value === "C") {
+    } else if (button.value === "AC") {
         clearTextExpressionHolder_TextField()
         clearTextField()
         //clear all previous stored values in accumulator
         resetAccumulator()
+
+    } else if (button.value === "Inv") {
+        if (sin_btn.id === "sin") {
+            changeButton_ID_and_Value(sin_btn, "arcsin", "arcsin", "arcsin")
+        } else if (sin_btn.id === "arcsin") {
+            changeButton_ID_and_Value(sin_btn, "sin", "sin", "sin")
+        }
+
+        if (cos_btn.id === "cos") {
+            changeButton_ID_and_Value(cos_btn, "arccos", "arccos", "arccos")
+        } else if (cos_btn.id === "arccos") {
+            changeButton_ID_and_Value(cos_btn, "cos", "cos", "cos")
+        }
+
+        if (tan_btn.id === "tan") {
+            changeButton_ID_and_Value(tan_btn, "arctan", "arctan", "arctan")
+        } else if (tan_btn.id === "arctan") {
+            changeButton_ID_and_Value(tan_btn, "tan", "tan", "tan")
+        }
 
     } else if (button.value === "rpn_postfix") {
         let postfix_notation = expr.convert_to_PostfixRPN(
@@ -70,14 +94,23 @@ const getButtonValue = (button: HTMLButtonElement) => {
         resetAccumulator()
 
     } else {
-        displayTxtField.value += button.value
+        if (button.value === "sin" || button.value === "cos" || button.value === "tan" ||
+            button.value === "csc" || button.value === "sec" || button.value === "cot" ||
+            button.value === "arcsin" || button.value === "arccos" || button.value === "arctan" ||
+            button.value === "log" || button.value === "ln" || button.value === "Γ"
+        ) {
+            displayTxtField.value += button.value + "("
+            //show user input in both txtfield and expression holder txtfield
+            expressionHolder_txtField.value += button.value + "("
+        } else {
+            displayTxtField.value += button.value
+            //show user input in both txtfield and expression holder txtfield
+            expressionHolder_txtField.value += button.value
+        }
 
         //append user input to accumulator
         expression_accumulator.push(button.value)
-        //console.log(expression_accumulator)
-
-        //show user input in both txtfield and expression holder txtfield
-        expressionHolder_txtField.value += button.value
+        //console.log(expression_accumulator
 
     }
 }
@@ -105,4 +138,13 @@ const resetAccumulator = () => {
     while (expression_accumulator.length != 0) {
         expression_accumulator.pop()
     }
+}
+
+const changeButton_ID_and_Value = (
+    button: HTMLButtonElement, innerHTML: string, id: string, value: string
+) => {
+    button.innerHTML = innerHTML
+    button.id = id
+    button.value = value
+    return button
 }

@@ -1,25 +1,25 @@
-p{
+p {
     text-align: center;
     font-size: 2rem;
     font-weight: bold;
 }
 
-.btn{
-    padding: 1rem;
+.btn {
+    padding: 0.8rem;
     width: 5rem;
-    margin: 2px;
+    margin: 3px;
 }
 
-#expression-input{
+#expression-input {
     padding-top: 2rem;
     height: 7rem;
 }
 
-#btn_equalsTo{
+/* #btn_equalsTo {
     width: 10.4em;
-}
+} */
 
-#expression-holder{
+#expression-holder {
     position: relative;
-    top: 40px; 
+    top: 40px;
 }
