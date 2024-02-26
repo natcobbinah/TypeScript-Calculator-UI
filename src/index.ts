@@ -3,8 +3,6 @@ import '../public/styles.css'
 
 let expr = new Expression()
 
-let expression_accumulator: string[] = []
-
 let expressionHolder_txtField = document.getElementById('expression-holder') as HTMLInputElement
 const displayTxtField = document.getElementById('expression-input') as HTMLInputElement
 const buttons = document.querySelectorAll('button')
@@ -30,8 +28,6 @@ const getButtonValue = (button: HTMLButtonElement) => {
     } else if (button.value === "AC") {
         clearTextExpressionHolder_TextField()
         clearTextField()
-        //clear all previous stored values in accumulator
-        resetAccumulator()
 
     } else if (button.value === "Inv") {
         if (sin_btn.id === "sin") {
@@ -73,25 +69,17 @@ const getButtonValue = (button: HTMLButtonElement) => {
         }
 
     } else if (button.value === "=") {
-        console.log(displayTxtField.value)
         let computedResult = expr.eval_Expression(
             expr.convert_to_PostfixRPN(displayTxtField.value)
         )
-        console.log(computedResult)
+
         clearTextField()
         displayTxtField.value = String(computedResult)
-
-        //get user-input expression and computation, and display in expression holder textfd
-        clearTextExpressionHolder_TextField()
-        for (let value of expression_accumulator.values()) {
-            expressionHolder_txtField.value += value
-        }
 
         //add final answer to existing input in expressionHolder textfield, serving as a history panel
         expressionHolder_txtField.value += ` = ${computedResult}`
 
-        //clear all previous stored values in accumulator
-        resetAccumulator()
+
 
     } else {
         if (button.value === "sin" || button.value === "cos" || button.value === "tan" ||
@@ -99,6 +87,7 @@ const getButtonValue = (button: HTMLButtonElement) => {
             button.value === "arcsin" || button.value === "arccos" || button.value === "arctan" ||
             button.value === "log" || button.value === "ln" || button.value === "Γ"
         ) {
+            //if its any of these functions append with  open_bracket b4 continuing expression
             displayTxtField.value += button.value + "("
             //show user input in both txtfield and expression holder txtfield
             expressionHolder_txtField.value += button.value + "("
@@ -107,10 +96,6 @@ const getButtonValue = (button: HTMLButtonElement) => {
             //show user input in both txtfield and expression holder txtfield
             expressionHolder_txtField.value += button.value
         }
-
-        //append user input to accumulator
-        expression_accumulator.push(button.value)
-        //console.log(expression_accumulator
 
     }
 }
@@ -127,17 +112,6 @@ const removeCharValue_One_At_A_Time = () => {
     displayTxtField.value = displayTxtField.value.slice(0, - 1)
 
     expressionHolder_txtField.value = expressionHolder_txtField.value.slice(0, - 1)
-
-    //on removal of a character from the button press, the last element
-    //from the array needs to be removed
-    expression_accumulator.pop()
-    //console.log(expression_accumulator)
-}
-
-const resetAccumulator = () => {
-    while (expression_accumulator.length != 0) {
-        expression_accumulator.pop()
-    }
 }
 
 const changeButton_ID_and_Value = (
