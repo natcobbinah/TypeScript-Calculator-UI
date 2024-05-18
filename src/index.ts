@@ -1,5 +1,7 @@
 import { Expression } from 'arithmetic-expr-calculator'
-import '../public/styles.css'
+import '../resources/styles.css'
+import '../index.html'
+import { error } from 'console'
 
 let expr = new Expression()
 
@@ -11,6 +13,9 @@ const buttons = document.querySelectorAll('button')
 let sin_btn = document.getElementById('sin') as HTMLButtonElement
 let cos_btn = document.getElementById('cos') as HTMLButtonElement
 let tan_btn = document.getElementById('tan') as HTMLButtonElement
+
+//alert placeholder, for parentheses error
+const alertPlaceholder = document.getElementById('liveAlertPlaceholder')
 
 //disable expression holder textfield
 expressionHolder_txtField.disabled = true
@@ -69,17 +74,19 @@ const getButtonValue = (button: HTMLButtonElement) => {
         }
 
     } else if (button.value === "=") {
-        let computedResult = expr.eval_Expression(
-            expr.convert_to_PostfixRPN(displayTxtField.value)
-        )
+        try {
+            let computedResult = expr.eval_Expression(
+                expr.convert_to_PostfixRPN(displayTxtField.value)
+            )
 
-        clearTextField()
-        displayTxtField.value = String(computedResult)
+            clearTextField()
+            displayTxtField.value = String(computedResult)
 
-        //add final answer to existing input in expressionHolder textfield, serving as a history panel
-        expressionHolder_txtField.value += ` = ${computedResult}`
-
-
+            //add final answer to existing input in expressionHolder textfield, serving as a history panel
+            expressionHolder_txtField.value += ` = ${computedResult}`
+        } catch (error) {
+            appendAlert(String(error), 'danger')
+        }
 
     } else {
         if (button.value === "sin" || button.value === "cos" || button.value === "tan" ||
@@ -96,7 +103,6 @@ const getButtonValue = (button: HTMLButtonElement) => {
             //show user input in both txtfield and expression holder txtfield
             expressionHolder_txtField.value += button.value
         }
-
     }
 }
 
@@ -121,4 +127,17 @@ const changeButton_ID_and_Value = (
     button.id = id
     button.value = value
     return button
+}
+
+//source: bootstrap.com
+const appendAlert = (message: string, type: string) => {
+    const wrapper = document.createElement('div')
+    wrapper.innerHTML = [
+        `<div class="alert alert-${type} alert-dismissible" role="alert">`,
+        `   <div>${message}</div>`,
+        '   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>',
+        '</div>'
+    ].join('')
+
+    alertPlaceholder.append(wrapper)
 }
